@@ -1,6 +1,6 @@
 {
   "name": "firstinternet/wordpress-responsive-image",
-  "description": "Generate responsive Wordpress images. Supports webp, lazyload, bootstrap.",
+  "description": "Generate responsive Wordpress images. Supports .webp, lazyload, bootstrap.",
   "keywords": ["wordpress", "webp", "lazyload"],
   "homepage": "https://bitbucket.org/firstint/wordpress-responsive-image",
   "license": "proprietary",
