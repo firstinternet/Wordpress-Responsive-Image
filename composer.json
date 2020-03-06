@@ -1,0 +1,19 @@
+{
+  "name": "firstinternet/wordpress-responsive-image",
+  "description": "Generate responsive Wordpress images. Supports webp, lazyload, bootstrap.",
+  "keywords": ["wordpress", "webp", "lazyload"],
+  "homepage": "https://bitbucket.org/firstint/wordpress-responsive-image",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Dan Cole",
+      "email": "dcole@firstinternet.co.uk"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.2"
+  },
+	"autoload": {
+    "files": ["wordpress-responsive-image.php"]
+  }
+}

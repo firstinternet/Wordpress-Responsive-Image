@@ -2,38 +2,57 @@
 
 class ResponsiveImage
 {
-    private $imageId;
-    private $size;
-    private $sources;
-    private $sizes;
-    private $class;
-    private $alt;
-    private $lazyLoad;
-    private $webp;
-    private $style;
-    private $gridWidths = [
+    private
+    $imageId,
+    $size,
+    $sources,
+    $sizes,
+    $class,
+    $alt,
+    $lazyLoad,
+    $webp,
+    $style,
+    $gridWidths = [
         'xxs' => [
-            'media' => ['min' => false, 'max' => 399.98],
+            'media' => [
+                'min' => false,
+                'max' => 399.98
+            ],
             'containerMax' => 400
         ],      
         'xs' => [
-            'media' => ['min' => false, 'max' => 575.98],
+            'media' => [
+                'min' => false,
+                'max' => 575.98
+            ],
             'containerMax' => 560
         ],
         'sm' => [
-            'media' => ['min' => 576, 'max' => 767.98],
+            'media' => [
+                'min' => 576,
+                'max' => 767.98
+            ],
             'containerMax' => 540
         ],
         'md' => [
-            'media' => ['min' => 768, 'max' => 991.98],
+            'media' => [
+                'min' => 768,
+                'max' => 991.98
+            ],
             'containerMax' => 720
         ],
         'lg' => [
-            'media' => ['min' => 992, 'max' => 1199.98],
+            'media' => [
+                'min' => 992,
+                'max' => 1199.98
+            ],
             'containerMax' => 960
         ],
         'xl' => [
-            'media' => ['min' => 1200, 'max' => false],
+            'media' => [
+                'min' => 1200,
+                'max' => false
+            ],
             'containerMax' => 1284
         ]
     ];
@@ -152,10 +171,11 @@ class ResponsiveImage
 
     private function replaceWebp( String $source )
     {
-        return str_replace( ['.jpg', '.jpeg', '.png', '<source '],
-                            ['.jpg.webp', '.jpeg.webp', '.png.webp', '<source type="image/webp" '],
-                            $source
-                        );   
+        return str_replace(
+            ['.jpg', '.jpeg', '.png', '<source '],
+            ['.jpg.webp', '.jpeg.webp', '.png.webp', '<source type="image/webp" '],
+            $source
+        );   
     }
 
     private function createSources()
