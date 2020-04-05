@@ -272,14 +272,12 @@ class ResponsiveImage
     public function generate()
     {
         $picture = $this->constructPictureElement();
-
         echo $picture;
     }
 
     public function get()
     {
         $picture = $this->constructPictureElement();
-
         return $picture;
     }
 }
