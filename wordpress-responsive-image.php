@@ -21,7 +21,7 @@ class ResponsiveImage
                 'max' => 399.98
             ],
             'containerMax' => 400
-        ],      
+        ],
         'xs' => [
             'media' => [
                 'min' => false,
@@ -60,7 +60,7 @@ class ResponsiveImage
     ];
 
     public function __construct ( Int $imageId, String $size = 'full' )
-    {   
+    {
         $this->imageId = $imageId;
         $this->size = $size;
     }
@@ -106,7 +106,7 @@ class ResponsiveImage
     {
         $this->sizes = $sizes;
         return $this;
-    }   
+    }
 
     public function autoSizes( String $classes )
     {
@@ -127,7 +127,7 @@ class ResponsiveImage
         }
 
         // Default to replicate Bootstrap's behaviour if 'col' or 'col-12' class isn't specified
-        if ( !isset($colSizes['xs']) ) {        
+        if ( !isset($colSizes['xs']) ) {
             $colSizes = [
                 'xs' => 12
             ];
@@ -157,14 +157,14 @@ class ResponsiveImage
             $media = $this->gridWidths[$screenSize]['media'];
             $containerMax = $this->gridWidths[$screenSize]['containerMax'];
             $maxImageWidth = round( ( ($containerMax / 12) * $size ) - 30 );
-            
+
             if ( !$media['min'] && $media['max'] ) {
                 $sizes .= '(max-width: 450px) calc(100vw - 30px), (min-width: 450px) and (max-width: ' . $media['max'] . 'px) ' . $maxImageWidth . 'px, ';
             } elseif ( $media['min'] && $media['max'] ) {
                 $sizes .= '(min-width: ' . $media['min'] . 'px) and (max-width: ' . $media['max'] . 'px) ' . $maxImageWidth . 'px, ';
             } elseif ( $media['min'] && !$media['max'] ) {
                 $sizes .= '(min-width: ' . $media['min'] . 'px) ' . $maxImageWidth . 'px';
-            }   
+            }
         }
 
         $this->sizes = $sizes;
@@ -177,7 +177,7 @@ class ResponsiveImage
             ['.jpg', '.jpeg', '.png', '<source '],
             ['.jpg.webp', '.jpeg.webp', '.png.webp', '<source type="image/webp" '],
             $source
-        );   
+        );
     }
 
     private function createSources()
@@ -214,7 +214,7 @@ class ResponsiveImage
             // Generate fallback sources for browsers which don't support webp
             foreach ( $sources as $source ) {
                 $sourcesString .= $source;
-            }            
+            }
 
         } else {
 
@@ -232,24 +232,24 @@ class ResponsiveImage
                     if ( $this->webp ) {
                         $sourcesString .= '<source type="image/webp" srcset="' . $this->replaceWebp($src) . '">';
                     }
-                    $sourcesString .= '<source srcset="' . $src . '">';                    
+                    $sourcesString .= '<source srcset="' . $src . '">';
                 }
             }
-                   
-        
+
+
         }
 
         return $sourcesString;
     }
 
-    public function generate()
+    private function constructPictureElement()
     {
         $src = esc_attr( wp_get_attachment_image_url( $this->imageId, $this->size ) );
 
         if ( !$src ) {
             return;
         }
-        
+
         $alt = $this->alt ? $this->alt : 'alt="' . get_post_meta( $this->imageId, '_wp_attachment_image_alt', true ) . '"';
         $sources = $this->createSources();
 
@@ -266,6 +266,20 @@ class ResponsiveImage
             );
         }
 
+        return $picture;
+    }
+
+    public function generate()
+    {
+        $picture = $this->constructPictureElement();
+
         echo $picture;
+    }
+
+    public function get()
+    {
+        $picture = $this->constructPictureElement();
+
+        return $picture;
     }
 }
