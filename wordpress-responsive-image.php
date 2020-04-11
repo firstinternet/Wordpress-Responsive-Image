@@ -11,6 +11,7 @@ class ResponsiveImage
     $sizes,
     $class,
     $alt,
+    $attributes,
     $lazyLoad,
     $webp,
     $style,
@@ -99,6 +100,18 @@ class ResponsiveImage
     public function setAlt( String $alt )
     {
         $this->alt = 'alt="' . $alt . '"';
+        return $this;
+    }
+
+    public function setAttributes( array $attributes )
+    {
+        foreach( $attributes as $attribute ) {
+            if ( is_array($attribute) && count($attribute) > 1 ) {
+                $attributeString = ' ' . $attribute[0] . '=';
+                $attributeString .= '"' . $attribute[1] . '"';
+                $this->attributes .= $attributeString;
+            }
+        }
         return $this;
     }
 
@@ -255,7 +268,7 @@ class ResponsiveImage
 
         $picture  = '<picture>';
         $picture .= $sources;
-        $picture .= '<img src="' . $src . '" class="' . trim($this->class) . '" ' . $alt . ' ' . $this->style . '>';
+        $picture .= '<img src="' . $src . '" class="' . trim($this->class) . '" ' . $alt . ' ' . $this->style . $this->attributes . '>';
         $picture .= '</picture>';
 
         if ( $this->lazyLoad ) {
