@@ -75,14 +75,15 @@ class ResponsiveImage
 
     public function setStyle( string $style )
     {
-        $this->style = 'style="' . $style . '"';
+        $this->style = $style;
         return $this;
     }
 
     public function lazyLoad( String $lazyClass = 'lazy' )
     {
         $this->lazyLoad = true;
-        $this->class .= ' ' . $lazyClass;
+        $this->lazyClass = $lazyClass;
+        $this->class .= ' ' . $this->lazyClass;
         return $this;
     }
 
@@ -100,7 +101,7 @@ class ResponsiveImage
 
     public function setAlt( String $alt )
     {
-        $this->alt = 'alt="' . $alt . '"';
+        $this->alt = $alt;
         return $this;
     }
 
@@ -258,18 +259,41 @@ class ResponsiveImage
 
     private function constructPictureElement()
     {
-        $src = esc_attr( wp_get_attachment_image_url( $this->imageId, $this->size ) );
+        $imageArray = wp_get_attachment_image_src( $this->imageId, $this->size );
 
-        if ( !$src ) {
+        if ( !$imageArray ) {
             return;
         }
 
-        $alt = $this->alt ? $this->alt : 'alt="' . get_post_meta( $this->imageId, '_wp_attachment_image_alt', true ) . '"';
+        $src = esc_attr( $imageArray[0] );
+        $intrinsicWidth = $imageArray[1];
+        $intrinsicHeight = $imageArray[2];
+
+        $alt = $this->alt ? $this->alt : get_post_meta( $this->imageId, '_wp_attachment_image_alt', true );
         $sources = $this->createSources();
+
+        $img  = '<img src="' . $src . '"';
+        $img .= ' alt="' . $alt . '"';
+        $img .= ' width="' . $intrinsicWidth . '"';
+        $img .= ' height="' . $intrinsicHeight . '"';
+
+        if ( $this->class ) {
+            $img .= ' class="' . trim($this->class) . '"';
+        }
+
+        if ( $this->style ) {
+            $img .= ' style="' . $this->style . '"';
+        }
+
+        if ( $this->attributes ) {
+            $img .= ' ' . $this->attributes;
+        }
+
+        $img .= '>';
 
         $picture  = '<picture>';
         $picture .= $sources;
-        $picture .= '<img src="' . $src . '" class="' . trim($this->class) . '" ' . $alt . ' ' . $this->style . $this->attributes . '>';
+        $picture .= $img;
         $picture .= '</picture>';
 
         if ( $this->lazyLoad ) {
