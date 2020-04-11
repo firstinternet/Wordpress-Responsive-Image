@@ -13,6 +13,7 @@ class ResponsiveImage
     $alt,
     $attributes,
     $lazyLoad,
+    $lazyClass,
     $webp,
     $style,
     $gridWidths = [
@@ -272,11 +273,17 @@ class ResponsiveImage
         $picture .= '</picture>';
 
         if ( $this->lazyLoad ) {
+            $fallbackPicture = $picture;
+            $fallbackPicture = str_replace($this->lazyClass, '', $fallbackPicture);
+            $fallbackPicture = '<noscript>' . $fallbackPicture . '</noscript>';
+
             $picture = str_replace(
                 ['src="', 'srcset="', 'sizes="'],
                 ['data-src="', 'data-srcset="', 'data-sizes="'],
                 $picture
             );
+
+            $picture .= $fallbackPicture;
         }
 
         return $picture;
