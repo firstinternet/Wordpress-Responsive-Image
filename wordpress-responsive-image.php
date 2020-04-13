@@ -222,7 +222,7 @@ class ResponsiveImage
 
             if ( $this->webp ) {
                 foreach ( $sources as $source ) {
-                    $sourcesString .= replaceWebp($source);
+                    $sourcesString .= $this->replaceWebp($source);
                 }
             }
 
