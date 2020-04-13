@@ -29,7 +29,7 @@ class ResponsiveImage
                 'min' => false,
                 'max' => 575.98
             ],
-            'containerMax' => 560
+            'containerMax' => 575
         ],
         'sm' => [
             'media' => [
@@ -57,7 +57,7 @@ class ResponsiveImage
                 'min' => 1200,
                 'max' => false
             ],
-            'containerMax' => 1284
+            'containerMax' => 1140
         ]
     ];
 
