@@ -218,9 +218,9 @@ class ResponsiveImage
                 } else {
                     $minMax = $this->gridWidths[$sourceSize]['media'];
                     if ( !$minMax['max'] ) {
-                        $media = '(min-width: ' . $minMax['min'] .'px)';
+                        $media = '(min-width: ' . $minMax['min'] . 'px)';
                     } else {
-                        $media = '(min-width: ' . $minMax['min'] .'px) and (max-width: ' . $minMax['max'] . 'px)';
+                        $media = '(min-width: ' . $minMax['min'] . 'px) and (max-width: ' . $minMax['max'] . 'px)';
                     }
                 }
 
