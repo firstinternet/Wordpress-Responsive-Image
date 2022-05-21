@@ -178,10 +178,10 @@ class ResponsiveImage
         foreach ( $colSizes as $screenSize => $size ) {
             $media = $this->gridWidths[$screenSize]['media'];
             $containerMax = $this->gridWidths[$screenSize]['containerMax'];
-            $maxImageWidth = round( ( ($containerMax / 12) * $size ) - 30 );
+            $maxImageWidth = round( ( ($containerMax / 12) * $size ) - 24 );
 
             if ( !$media['min'] && $media['max'] ) {
-                $sizes .= '(max-width: 450px) calc(100vw - 30px), (min-width: 450px) and (max-width: ' . $media['max'] . 'px) ' . $maxImageWidth . 'px, ';
+                $sizes .= '(max-width: 450px) calc(100vw - 24px), (min-width: 450px) and (max-width: ' . $media['max'] . 'px) ' . $maxImageWidth . 'px, ';
             } elseif ( $media['min'] && $media['max'] ) {
                 $sizes .= '(min-width: ' . $media['min'] . 'px) and (max-width: ' . $media['max'] . 'px) ' . $maxImageWidth . 'px, ';
             } elseif ( $media['min'] && !$media['max'] ) {
