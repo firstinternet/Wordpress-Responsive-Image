@@ -55,10 +55,17 @@ class ResponsiveImage
         'xl' => [
             'media' => [
                 'min' => 1200,
-                'max' => false
+                'max' => 1399.98
             ],
             'containerMax' => 1140
-        ]
+        ],
+        'xl' => [
+            'media' => [
+                'min' => 1400,
+                'max' => false
+            ],
+            'containerMax' => 1320
+        ]        
     ];
 
     public function __construct ( Int $imageId, String $size = 'full' )
