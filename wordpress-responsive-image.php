@@ -59,7 +59,7 @@ class ResponsiveImage
             ],
             'containerMax' => 1140
         ],
-        'xl' => [
+        'xxl' => [
             'media' => [
                 'min' => 1400,
                 'max' => false
@@ -155,7 +155,7 @@ class ResponsiveImage
             ];
         }
 
-        $breakpoints = ['xs', 'sm', 'md', 'lg', 'xl'];
+        $breakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 
         // Loop through all breakpoints and fill in gaps between specified col sizes
         foreach ( $breakpoints as $key => $size ) {
