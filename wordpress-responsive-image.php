@@ -304,9 +304,8 @@ class ResponsiveImage
         $picture .= '</picture>';
 
         if ( $this->lazyLoad ) {
-            $fallbackPicture = $picture;
-            $fallbackPicture = str_replace($this->lazyClass, '', $fallbackPicture);
-            $fallbackPicture = '<noscript>' . $fallbackPicture . '</noscript>';
+            $fallbackImg = str_replace($this->lazyClass, '', $img);
+            $fallbackImg = '<noscript>' . $fallbackImg . '</noscript>';
 
             $picture = str_replace(
                 ['src="', 'srcset="', 'sizes="'],
@@ -314,7 +313,7 @@ class ResponsiveImage
                 $picture
             );
 
-            $picture .= $fallbackPicture;
+            $picture .= $fallbackImg;
         }
 
         return $picture;
