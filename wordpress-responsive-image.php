@@ -150,9 +150,7 @@ class ResponsiveImage
 
         // Default to replicate Bootstrap's behaviour if 'col' or 'col-12' class isn't specified
         if ( !isset($colSizes['xs']) ) {
-            $colSizes = [
-                'xs' => 12
-            ];
+            $colSizes['xs'] = 12;
         }
 
         $breakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
