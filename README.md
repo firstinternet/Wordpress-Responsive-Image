@@ -2,7 +2,7 @@
 
 ## Overview
 
-The responsive image class was built by a team of developers at [First Internet](https://www.firstinternet.co.uk).
+The responsive image class was built by a team of developers at <a href="https://www.firstinternet.co.uk" rel="follow">First Internet</a>.
 
 The `ResponsiveImage` class is a PHP utility designed to generate responsive images for WordPress. It supports multiple image sources, lazy loading, WebP format, and dynamic sizing based on Bootstrap-like breakpoints.
 
